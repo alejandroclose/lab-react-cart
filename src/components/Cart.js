@@ -15,7 +15,7 @@ const products = [
   },
   {
     name: "Bluebell Coffee Mujeres",
-    qty: 2,
+    qty: 4,
     price: 10.5,
     SKU: "ES0030003"
   }
@@ -43,7 +43,7 @@ const Item = props => {
 
 //Finding the total
 const subtotalArr = products.map((product)=>{
-  const prices = product.price;
+  const prices = product.price * product.qty;
   return prices;
 })
 
@@ -69,6 +69,7 @@ class Cart extends Component {
         
         
         }
+        <br/>
         <div>Total: {total.toFixed(2)}€</div>
       </div>
       
