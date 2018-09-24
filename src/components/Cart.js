@@ -21,30 +21,59 @@ const products = [
   }
 ];
 
+
 const Item = props => {
   return (
-    <div>
-      {props.name} - 
+    <div className="item">
+        <div className="info">
+      {props.qty}
+    </div>
+    <div className="info">
+      x
+      </div>
+    <div className="info">
+      {props.name}
+    </div>
+    <div className="info">
+      Price: {props.price.toFixed(2)}€
+    </div>
     </div>
   );
 };
 
+//Finding the total
+const subtotalArr = products.map((product)=>{
+  const prices = product.price;
+  return prices;
+})
+
+const total = subtotalArr.reduce(function (accumulator, currentValue) {
+  return accumulator + currentValue;
+}, 0);
+
+
 class Cart extends Component {
   render() {
+    
     return(
       <div>
         <h2>Cart</h2>
-        {products.map((product, SKU) => {
+        {products.map((product) => {
+
           return(
+            <Item key ={product.SKU} name = {product.name} qty = {product.qty} price = {product.price}/>
             
-            <Item key ={product.SKU} name = {product.name}/>
+            
           )
-            
         })
+        
+        
         }
+        <div>Total: {total.toFixed(2)}€</div>
       </div>
+      
     )
   }
+  
 }
-
 export default Cart;
